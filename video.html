@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaizen Creative Room</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      overflow: hidden;
+    }
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <video id="videoPlayer" autoplay muted playsinline>
+    <source src="https://drive.google.com/uc?export=download&id=1_0A8Ius4Viploi8egRFmlA9e2SPYXv3O" type="video/mp4">
+    Tu navegador no soporta la reproducción de video.
+  </video>
+
+  <script>
+    const video = document.getElementById('videoPlayer');
+
+    video.addEventListener('ended', () => {
+      window.location.href = "https://kaizencreativeroom.github.io/inicio.html";
+    });
+
+    video.play().catch(e => {
+      console.warn("Autoplay bloqueado:", e);
+    });
+  </script>
+
+</body>
+</html>
