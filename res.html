@@ -15,43 +15,25 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
+    body {
       font-family: 'Bebas Neue', sans-serif;
+      background-color: #111;
       color: white;
+      line-height: 1.5;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://i.postimg.cc/J0CcpDMW/Produccion.jpg');
-      background-size: cover;
-      background-position: center;
-      z-index: -2;
+    img {
+      max-width: 100%;
+      vertical-align: middle;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: -1;
-    }
-
+    /* Barra de navegación */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: #000;
       padding: 1rem 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
       position: fixed;
       top: 0;
       width: 100%;
@@ -83,37 +65,193 @@
     .menu-toggle {
       display: none;
       font-size: 2rem;
-      cursor: pointer;
       background: none;
       border: none;
       color: white;
+      cursor: pointer;
     }
 
     main {
-      margin-top: 100px;
+      margin-top: 80px;
       padding: 2rem;
+    }
+
+    .container {
+      max-width: 1170px;
+      margin: auto;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .gallery {
+      background-image: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.75)), url(https://i.postimg.cc/bJY7bdVz/produccion1.jpg);
+      background-attachment: fixed;
+      width: 100%;
+      display: block;
+      min-height: 100vh;
+      padding: 100px 0;
+    }
+
+    .gallery-filter {
+      width: 100%;
       text-align: center;
+      margin-bottom: 40px;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .filter-item {
+      color: #ffffff;
+      font-size: 17px;
+      border-bottom: 2px solid white;
+      text-transform: uppercase;
+      display: inline-block;
+      border-radius: 20px;
+      margin: 5px 8px;
+      cursor: pointer;
+      padding: 8px 20px;
+      line-height: 1.2;
+      transition: all 0.3s ease;
     }
 
-    p {
-      font-size: 1.5rem;
+    .filter-item:hover {
+      border: 2px solid white;
+      background: rgba(255,255,255,0.1);
     }
 
-    /* Responsive: menú hamburguesa en móviles */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+    .filter-item.active {
+      background: #000;
+      border: 2px solid white;
+    }
+
+    .gallery-item {
+      width: 33.33%;
+      padding: 9px;
+      position: relative;
+      transition: all 0.5s ease;
+    }
+
+    .gallery-item-inner img,
+    .gallery-item-inner iframe {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      aspect-ratio: 16 / 9;
+    }
+
+    .gallery-item:hover .gallery-item-inner img {
+      transform: scale(1.05);
+    }
+
+    .hover-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      display: none;
+      padding: 20%;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover .hover-text {
+      display: block;
+    }
+
+    .gallery-item.show {
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .gallery-item.hide {
+      display: none;
+    }
+
+    .slider-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .slider-container {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .slider-container img, .slider-container iframe {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      max-height: 80vh;
+    }
+
+    .slider-close,
+    .slider-prev,
+    .slider-next {
+      position: absolute;
+      font-size: 30px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .slider-close {
+      top: 10px;
+      right: 10px;
+    }
+
+    .slider-prev {
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .slider-next {
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-item {
+        width: 50%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-item {
+        width: 100%;
       }
 
       .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
+        text-align: center;
         margin-top: 1rem;
       }
 
@@ -122,17 +260,12 @@
       }
 
       .nav-links a {
-        margin: 0.5rem 0;
-        text-align: center;
+        padding: 0.5rem 0;
         font-size: 1.4rem;
       }
 
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      p {
-        font-size: 1.2rem;
+      .menu-toggle {
+        display: block;
       }
     }
   </style>
@@ -152,18 +285,146 @@
   </header>
 
   <main>
-    <h1>Bienvenido a Kaizen Creative Room</h1>
-    <p>Explora nuestros trabajos y servicios creativos.</p>
+    <section class="gallery">
+      <div class="container">
+        <div class="row">
+          <div class="gallery-filter">
+            <span class="filter-item active" data-filter="all">Todos</span>
+            <span class="filter-item" data-filter="watch">Peliculas</span>
+            <span class="filter-item" data-filter="headphone">Social</span>
+            <span class="filter-item" data-filter="camera">VideoClip</span>
+            <span class="filter-item" data-filter="shoe">Musica</span>
+            <span class="filter-item" data-filter="phone">Comercial</span>
+          </div>
+        </div>
+        <div class="row">
+          <!-- GALERÍA: coloca tus items aquí -->
+          <!-- Ejemplo de item -->
+          <div class="gallery-item shoe">
+            <div class="gallery-item-inner">
+              <img src="https://i.postimg.cc/dQrFK2s9/produccionconcierto2.jpg" alt="shoe">
+              <div class="hover-text">Producción Concierto 1</div>
+            </div>
+          </div>
+          <!-- Agrega más elementos aquí como en tu original -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Slider Modal -->
+    <div class="slider-overlay">
+      <div class="slider-container">
+        <span class="slider-close">&times;</span>
+        <span class="slider-prev">&#10094;</span>
+        <span class="slider-next">&#10095;</span>
+        <img id="slider-img" src="" alt="">
+        <iframe id="slider-video" src="" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
   </main>
 
   <script>
-    // Activar/desactivar menú en móviles
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    // Menú responsive
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
     });
+
+    // Galería
+    const filterContainer = document.querySelector(".gallery-filter"),
+          galleryItems = document.querySelectorAll(".gallery-item"),
+          sliderOverlay = document.querySelector(".slider-overlay"),
+          sliderImg = document.querySelector("#slider-img"),
+          sliderVideo = document.querySelector("#slider-video"),
+          sliderClose = document.querySelector(".slider-close"),
+          sliderPrev = document.querySelector(".slider-prev"),
+          sliderNext = document.querySelector(".slider-next");
+
+    let currentSlideIndex = 0;
+    let mediaArray = [];
+
+    function updateMediaArrays(category) {
+      mediaArray = [];
+      galleryItems.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          const img = item.querySelector("img");
+          const iframe = item.querySelector("iframe");
+          if (img) mediaArray.push({ type: 'image', src: img.src });
+          if (iframe) mediaArray.push({ type: 'video', src: iframe.src });
+        }
+      });
+    }
+
+    filterContainer.addEventListener("click", (event) => {
+      if (event.target.classList.contains("filter-item")) {
+        filterContainer.querySelector(".active").classList.remove("active");
+        event.target.classList.add("active");
+        const filterValue = event.target.getAttribute("data-filter");
+
+        galleryItems.forEach((item) => {
+          item.classList.toggle("hide", !(item.classList.contains(filterValue) || filterValue === "all"));
+          item.classList.toggle("show", item.classList.contains(filterValue) || filterValue === "all");
+        });
+
+        updateMediaArrays(filterValue);
+      }
+    });
+
+    galleryItems.forEach((item) => {
+      const img = item.querySelector("img");
+      const iframe = item.querySelector("iframe");
+
+      item.addEventListener("click", () => {
+        if (img) {
+          currentSlideIndex = mediaArray.findIndex(media => media.src === img.src);
+          sliderImg.src = img.src;
+          sliderImg.style.display = "block";
+          sliderVideo.style.display = "none";
+        } else if (iframe) {
+          currentSlideIndex = mediaArray.findIndex(media => media.src === iframe.src);
+          sliderVideo.src = iframe.src + "?autoplay=1";
+          sliderVideo.style.display = "block";
+          sliderImg.style.display = "none";
+        }
+        sliderOverlay.style.display = "flex";
+      });
+    });
+
+    sliderClose.addEventListener("click", () => {
+      sliderOverlay.style.display = "none";
+      sliderVideo.src = "";
+    });
+
+    sliderPrev.addEventListener("click", () => {
+      currentSlideIndex = (currentSlideIndex === 0) ? mediaArray.length - 1 : currentSlideIndex - 1;
+      const currentMedia = mediaArray[currentSlideIndex];
+      if (currentMedia.type === 'image') {
+        sliderImg.src = currentMedia.src;
+        sliderImg.style.display = "block";
+        sliderVideo.style.display = "none";
+      } else {
+        sliderVideo.src = currentMedia.src + "?autoplay=1";
+        sliderVideo.style.display = "block";
+        sliderImg.style.display = "none";
+      }
+    });
+
+    sliderNext.addEventListener("click", () => {
+      currentSlideIndex = (currentSlideIndex === mediaArray.length - 1) ? 0 : currentSlideIndex + 1;
+      const currentMedia = mediaArray[currentSlideIndex];
+      if (currentMedia.type === 'image') {
+        sliderImg.src = currentMedia.src;
+        sliderImg.style.display = "block";
+        sliderVideo.style.display = "none";
+      } else {
+        sliderVideo.src = currentMedia.src + "?autoplay=1";
+        sliderVideo.style.display = "block";
+        sliderImg.style.display = "none";
+      }
+    });
+
+    updateMediaArrays('all');
   </script>
 
 </body>
