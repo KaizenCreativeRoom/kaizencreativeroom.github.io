@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kaizen Creative Room</title>
-  
+
   <!-- Fuente estilo cinematográfico -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
-    /* Reset básico */
     * {
       margin: 0;
       padding: 0;
@@ -22,7 +21,6 @@
       color: white;
     }
 
-    /* Imagen de fondo */
     body::before {
       content: "";
       position: fixed;
@@ -36,7 +34,6 @@
       z-index: -2;
     }
 
-    /* Capa negra semitransparente encima de la imagen */
     body::after {
       content: "";
       position: fixed;
@@ -48,7 +45,6 @@
       z-index: -1;
     }
 
-    /* Barra de navegación */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -60,6 +56,7 @@
       top: 0;
       width: 100%;
       z-index: 1000;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -67,8 +64,12 @@
       letter-spacing: 2px;
     }
 
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
     .nav-links a {
-      margin-left: 2rem;
       text-decoration: none;
       color: white;
       font-size: 1.2rem;
@@ -79,7 +80,15 @@
       color: #f39c12;
     }
 
-    /* Espaciado para el contenido debajo del menú */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+    }
+
     main {
       margin-top: 100px;
       padding: 2rem;
@@ -94,13 +103,46 @@
     p {
       font-size: 1.5rem;
     }
+
+    /* Responsive: menú hamburguesa en móviles */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        margin: 0.5rem 0;
+        text-align: center;
+        font-size: 1.4rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header class="navbar">
     <div class="logo">Kaizen Creative Room</div>
-    <nav class="nav-links">
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+    <nav class="nav-links" id="nav-links">
       <a href="https://kaizencreativeroom.github.io/inicio.html">Inicio</a>
       <a href="https://kaizencreativeroom.github.io/trabajos.html">Trabajos</a>
       <a href="https://kaizencreativeroom.github.io/servicios.html">Servicios</a>
@@ -115,7 +157,13 @@
   </main>
 
   <script>
-    // Aquí puedes añadir interacciones en JavaScript si lo necesitas más adelante
+    // Activar/desactivar menú en móviles
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
   </script>
 
 </body>
