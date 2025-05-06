@@ -7,38 +7,27 @@
     html, body {
       margin: 0;
       padding: 0;
-      background-color: black;
       height: 100%;
+      background-color: black;
       overflow: hidden;
     }
-    video {
+    iframe {
       position: absolute;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      object-fit: cover;
+      border: none;
     }
   </style>
 </head>
 <body>
 
-  <video id="videoPlayer" autoplay muted playsinline>
-    <source src="https://drive.google.com/uc?export=download&id=1_0A8Ius4Viploi8egRFmlA9e2SPYXv3O" type="video/mp4">
-    Tu navegador no soporta la reproducción de video.
-  </video>
-
-  <script>
-    const video = document.getElementById('videoPlayer');
-
-    video.addEventListener('ended', () => {
-      window.location.href = "https://kaizencreativeroom.github.io/inicio.html";
-    });
-
-    video.play().catch(e => {
-      console.warn("Autoplay bloqueado:", e);
-    });
-  </script>
+  <iframe 
+    src="https://drive.google.com/file/d/1_0A8Ius4Viploi8egRFmlA9e2SPYXv3O/preview" 
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
 
 </body>
 </html>
